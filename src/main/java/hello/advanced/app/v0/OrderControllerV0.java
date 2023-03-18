@@ -11,13 +11,7 @@ public class OrderControllerV0 {
 
     @GetMapping("/v0/request")
     public String request(String itemId) {
-        try {
-            orderService.orderItem(itemId);
-        } catch (IllegalStateException e) {
-            return "IllegalStateException";
-        } catch (Exception e) {
-            return "exception";
-        }
+        orderService.orderItem(itemId);
         return "ok";
     }
 }
