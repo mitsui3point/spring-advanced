@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class OrderControllerV0Test {
 
+    public static final String URL_TEMPLATE = "/v0/request";
     @Autowired
     OrderControllerV0 orderController;
 
@@ -25,7 +26,7 @@ public class OrderControllerV0Test {
     @Test
     @DisplayName("쿼리 파라미터 요청에 성공한다")
     void requestTest() throws Exception {
-        ResultActions perform = mvc.perform(get("/v0/request")
+        ResultActions perform = mvc.perform(get(URL_TEMPLATE)
                 .param("itemId", "itemId"));
 
         perform.andExpect(content().string("ok"));
@@ -35,7 +36,7 @@ public class OrderControllerV0Test {
     @DisplayName("쿼리 파라미터 요청에 실패한다")
     void request500Test() {
         Assertions.assertThatThrownBy(() -> {
-            ResultActions perform = mvc.perform(get("/v0/request")
+            ResultActions perform = mvc.perform(get(URL_TEMPLATE)
                     .param("itemId", "ex"));
         });
     }
