@@ -18,7 +18,7 @@ public class TraceStatusTest {
         TraceStatus traceStatus = new TraceStatus(traceId, startTimeMs, message);
         //then
         assertThat(traceStatus.getTraceId()).isEqualTo(traceId);
-        assertThat(traceStatus.getStartTimeMs()).isEqualTo(traceId);
-        assertThat(traceStatus.getMessage()).isEqualTo(traceId);
+        assertThat(traceStatus.getStartTimeMs()).isEqualTo(startTimeMs);
+        assertThat(traceStatus.getMessage()).isEqualTo(message);
     }
 }
