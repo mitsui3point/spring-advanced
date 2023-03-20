@@ -5,6 +5,7 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
+import hello.advanced.trace.hellotrace.HelloTraceV2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,9 @@ public class LogAppender {
         loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
         if (className.contains("V1")) {
             logger = loggerContext.getLogger(HelloTraceV1.class);
+        }
+        if (className.contains("V2")) {
+            logger = loggerContext.getLogger(HelloTraceV2.class);
         }
         listAppender = new ListAppender<>();
     }
