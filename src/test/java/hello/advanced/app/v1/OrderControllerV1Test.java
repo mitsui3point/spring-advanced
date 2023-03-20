@@ -1,6 +1,6 @@
 package hello.advanced.app.v1;
 
-import hello.advanced.log.appender.LogAppenderV1;
+import hello.advanced.log.appender.LogAppender;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class OrderControllerV1Test extends LogAppenderV1 {
+public class OrderControllerV1Test extends LogAppender {
 
     public static final String URL = "/v1/request";
     @Autowired

@@ -11,23 +11,37 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
-public class LogAppenderV1 {
+public class LogAppender {
     protected ListAppender<ILoggingEvent> listAppender;
     private Logger logger;
     private LoggerContext loggerContext;
 
     @BeforeEach
     void setUp() {
-        loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-        logger = loggerContext.getLogger(HelloTraceV1.class);
-        listAppender = new ListAppender<>();
-
-        listAppender.start();
-        logger.addAppender(listAppender);
+        setLogAppenderInfo();
+        logAppendStart();
     }
 
     @AfterEach
     public void tearDown() {
+        logAppendEnd();
+    }
+
+    private void setLogAppenderInfo() {
+        String className = this.getClass().getName();
+        loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+        if (className.contains("V1")) {
+            logger = loggerContext.getLogger(HelloTraceV1.class);
+        }
+        listAppender = new ListAppender<>();
+    }
+
+    private void logAppendStart() {
+        listAppender.start();
+        logger.addAppender(listAppender);
+    }
+
+    private void logAppendEnd() {
         logger.detachAppender(listAppender);
         listAppender.stop();
     }

@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderControllerV1 {
     private final OrderServiceV1 orderService;
-    private final HelloTraceV1 trace;
+    private final HelloTraceV1 helloTrace;
 
     @GetMapping("/v1/request")
     public String request(String itemId) {
         TraceStatus status = null;
         try {
-            status = trace.start("OrderController.request()");
+            status = helloTrace.start("OrderController.request()");
             orderService.orderItem(itemId);
-            trace.end(status);
+            helloTrace.end(status);
             return "ok";
         } catch (Exception e) {
-            trace.exception(status, e);
+            helloTrace.exception(status, e);
             throw e;
         }
     }

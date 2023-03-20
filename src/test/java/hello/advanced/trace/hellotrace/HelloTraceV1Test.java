@@ -1,7 +1,7 @@
 package hello.advanced.trace.hellotrace;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import hello.advanced.log.appender.LogAppenderV1;
+import hello.advanced.log.appender.LogAppender;
 import hello.advanced.trace.TraceStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HelloTraceV1Test extends LogAppenderV1 {
+public class HelloTraceV1Test extends LogAppender {
 
     @Test
     @DisplayName("로그 시작 종료")

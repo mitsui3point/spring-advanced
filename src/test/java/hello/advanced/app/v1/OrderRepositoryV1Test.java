@@ -1,6 +1,6 @@
 package hello.advanced.app.v1;
 
-import hello.advanced.log.appender.LogAppenderV1;
+import hello.advanced.log.appender.LogAppender;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class OrderRepositoryV1Test extends LogAppenderV1 {
+public class OrderRepositoryV1Test extends LogAppender {
 
     @Autowired
     OrderRepositoryV1 repository;
