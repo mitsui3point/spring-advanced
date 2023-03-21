@@ -42,23 +42,43 @@ public class OrderControllerV2Test extends LogAppender {
     @DisplayName("쿼리 파라미터 요청 로그를 출력한다")
     void requestLogTest() throws Exception {
         //given
-        String expectedLog = "OrderController.request() time=";
+        String expectedLog1_0 = "OrderController.request()";
+        String expectedLog2_0 = "|-->OrderService.orderItem()";
+        String expectedLog3_0 = "|   |-->OrderRepository.save()";
+        String expectedLog3_1 = "|   |<--OrderRepository.save() time=";
+        String expectedLog2_1 = "|<--OrderService.orderItem() time=";
+        String expectedLog1_1 = "OrderController.request() time=";
         //when
         ResultActions perform = mvc.perform(get(URL)
                 .param("itemId", "itemId"));
         //then
-        assertThat(getContainsLog(expectedLog)).isPresent();
+        assertThat(getContainsLog(expectedLog1_0)).isPresent();
+        assertThat(getContainsLog(expectedLog2_0)).isPresent();
+        assertThat(getContainsLog(expectedLog3_0)).isPresent();
+        assertThat(getContainsLog(expectedLog1_1)).isPresent();
+        assertThat(getContainsLog(expectedLog2_1)).isPresent();
+        assertThat(getContainsLog(expectedLog3_1)).isPresent();
     }
 
     @Test
     @DisplayName("쿼리 파라미터 요청 실패 로그를 출력한다")
     void request500LogTest() {
         //given
-        String expectedLog = "java.lang.IllegalStateException";
+        String expectedLog1_0 = "OrderController.request()";
+        String expectedLog2_0 = "|-->OrderService.orderItem()";
+        String expectedLog3_0 = "|   |-->OrderRepository.save()";
+        String expectedLog3_1 = "|   |<X-OrderRepository.save() time=";
+        String expectedLog2_1 = "|<X-OrderService.orderItem() time=";
+        String expectedLog1_1 = "OrderController.request() time=";
         //when
         assertThatThrownBy(() -> mvc.perform(get(URL)
                 .param("itemId", "ex")));
         //then
-        assertThat(getContainsLog(expectedLog)).isPresent();
+        assertThat(getContainsLog(expectedLog1_0)).isPresent();
+        assertThat(getContainsLog(expectedLog2_0)).isPresent();
+        assertThat(getContainsLog(expectedLog3_0)).isPresent();
+        assertThat(getContainsLog(expectedLog1_1)).isPresent();
+        assertThat(getContainsLog(expectedLog2_1)).isPresent();
+        assertThat(getContainsLog(expectedLog3_1)).isPresent();
     }
 }
