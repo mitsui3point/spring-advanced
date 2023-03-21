@@ -15,7 +15,7 @@ public class OrderServiceV2 {
     public void orderItem(TraceId beforeTraceId, String itemId) {
         TraceStatus status = null;
         try {
-            status = trace.startSync(beforeTraceId, "OrderService.orderItem()");
+            status = trace.beginSync(beforeTraceId, "OrderService.orderItem()");
             repository.save(status.getTraceId(), itemId);
             trace.end(status);
         } catch (Exception e) {

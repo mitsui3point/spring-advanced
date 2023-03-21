@@ -13,7 +13,7 @@ public class HelloTraceV2 {
     private static final String COMPLETE_PREFIX = "<--";
     private static final String EX_PREFIX = "<X-";
 
-    public TraceStatus start(String message) {
+    public TraceStatus begin(String message) {
         TraceId traceId = new TraceId();
         Long startTimeMs = System.currentTimeMillis();
         log.info("[{}] {}{}",
@@ -26,7 +26,7 @@ public class HelloTraceV2 {
                 message);
     }
 
-    public TraceStatus startSync(TraceId beforeTraceId, String message) {
+    public TraceStatus beginSync(TraceId beforeTraceId, String message) {
         TraceId nextId = beforeTraceId.createNextId();
         Long startTimeMs = System.currentTimeMillis();
         log.info("[{}] {}{}",

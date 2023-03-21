@@ -14,14 +14,14 @@ public class HelloTraceV2Test extends LogAppender {
 
     @Test
     @DisplayName("로그 시작 종료")
-    void startEnd() {
+    void beginEnd() {
         //given
         HelloTraceV2 helloTraceV2 = new HelloTraceV2();
         String message1 = "message1";
         String message2 = "message2";
         //when
-        TraceStatus status1 = helloTraceV2.start(message1);
-        TraceStatus status2 = helloTraceV2.startSync(status1.getTraceId(), message2);
+        TraceStatus status1 = helloTraceV2.begin(message1);
+        TraceStatus status2 = helloTraceV2.beginSync(status1.getTraceId(), message2);
         helloTraceV2.end(status2);
         helloTraceV2.end(status1);
         //then
@@ -35,14 +35,14 @@ public class HelloTraceV2Test extends LogAppender {
 
     @Test
     @DisplayName("로그 시작 예외")
-    void startException() {
+    void beginException() {
         //given
         HelloTraceV2 helloTraceV2 = new HelloTraceV2();
         String message1 = "message1";
         String message2 = "message2";
         //when
-        TraceStatus status1 = helloTraceV2.start(message1);
-        TraceStatus status2 = helloTraceV2.startSync(status1.getTraceId(), message2);
+        TraceStatus status1 = helloTraceV2.begin(message1);
+        TraceStatus status2 = helloTraceV2.beginSync(status1.getTraceId(), message2);
         helloTraceV2.exception(status2, new RuntimeException("예외 발생"));
         helloTraceV2.exception(status1, new RuntimeException("예외 발생"));
         //then

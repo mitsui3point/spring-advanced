@@ -14,12 +14,12 @@ public class HelloTraceV1Test extends LogAppender {
 
     @Test
     @DisplayName("로그 시작 종료")
-    void startEnd() {
+    void beginEnd() {
         //given
         HelloTraceV1 helloTraceV1 = new HelloTraceV1();
         String message = "message";
         //when
-        TraceStatus status = helloTraceV1.start(message);
+        TraceStatus status = helloTraceV1.begin(message);
         helloTraceV1.end(status);
         //then
         Optional<ILoggingEvent> optionalMessage = listAppender.list
@@ -32,12 +32,12 @@ public class HelloTraceV1Test extends LogAppender {
 
     @Test
     @DisplayName("로그 시작 예외")
-    void startException() {
+    void beginException() {
         //given
         HelloTraceV1 helloTraceV1 = new HelloTraceV1();
         String message = "message";
         //when
-        TraceStatus status = helloTraceV1.start(message);
+        TraceStatus status = helloTraceV1.begin(message);
         helloTraceV1.exception(status, new RuntimeException("예외 발생"));
         //then
         Optional<ILoggingEvent> optionalMessage = listAppender.list

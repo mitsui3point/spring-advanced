@@ -18,7 +18,7 @@ public class OrderControllerV1 {
     public String request(String itemId) {
         TraceStatus status = null;
         try {
-            status = helloTrace.start("OrderController.request()");
+            status = helloTrace.begin("OrderController.request()");
             orderService.orderItem(itemId);
             helloTrace.end(status);
             return "ok";

@@ -1,7 +1,6 @@
 package hello.advanced.app.v2;
 
 import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.hellotrace.HelloTraceV1;
 import hello.advanced.trace.hellotrace.HelloTraceV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ public class OrderControllerV2 {
     public String request(String itemId) {
         TraceStatus status = null;
         try {
-            status = helloTrace.start("OrderController.request()");
+            status = helloTrace.begin("OrderController.request()");
             orderService.orderItem(status.getTraceId(), itemId);
             helloTrace.end(status);
             return "ok";
