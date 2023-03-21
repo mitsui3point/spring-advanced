@@ -9,15 +9,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FieldLogTraceTest extends LogAppender {
 
-    private TraceLog traceLog = new FieldLogTrace();
+    private LogTrace trace = new FieldLogTrace();
 
     @Test
     @DisplayName("깊이 2단계의 로직을 성공한 뒤 로그 출력 한다")
     void traceLogLevel2() {
-        TraceStatus status1 = traceLog.begin("message1");
-        TraceStatus status2 = traceLog.begin("message2");
-        traceLog.end(status2);
-        traceLog.end(status1);
+        TraceStatus status1 = trace.begin("message1");
+        TraceStatus status2 = trace.begin("message2");
+        trace.end(status2);
+        trace.end(status1);
 
         assertThat(getContainsLog("message1")).isPresent();
         assertThat(getContainsLog("|-->message2")).isPresent();
@@ -28,10 +28,10 @@ public class FieldLogTraceTest extends LogAppender {
     @Test
     @DisplayName("깊이 2단계의 로직을 실패한 뒤 로그 출력 한다")
     void traceLogLevel2Fail() {
-        TraceStatus status1 = traceLog.begin("message1");
-        TraceStatus status2 = traceLog.begin("message2");
-        traceLog.exception(status2, new IllegalArgumentException("예외 발생!"));
-        traceLog.end(status1);
+        TraceStatus status1 = trace.begin("message1");
+        TraceStatus status2 = trace.begin("message2");
+        trace.exception(status2, new IllegalArgumentException("예외 발생!"));
+        trace.end(status1);
 
         assertThat(getContainsLog("message1")).isPresent();
         assertThat(getContainsLog("|-->message2")).isPresent();

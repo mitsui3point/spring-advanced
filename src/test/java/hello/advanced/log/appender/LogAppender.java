@@ -5,17 +5,13 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import hello.advanced.logtrace.FieldLogTrace;
-import hello.advanced.logtrace.TraceLog;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
 import hello.advanced.trace.hellotrace.HelloTraceV2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import static org.springframework.util.StringUtils.hasText;
 
@@ -44,7 +40,7 @@ public class LogAppender {
         if (className.contains("V2")) {
             logger = loggerContext.getLogger(HelloTraceV2.class);
         }
-        if (className.contains("FieldLogTrace")) {
+        if (className.contains("FieldLogTrace") || className.contains("V3")) {
             logger = loggerContext.getLogger(FieldLogTrace.class);
         }
         if (logger == null) {
