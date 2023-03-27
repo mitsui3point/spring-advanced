@@ -5,6 +5,7 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import hello.advanced.logtrace.FieldLogTrace;
+import hello.advanced.logtrace.ThreadLocalLogTrace;
 import hello.advanced.threadlocal.code.FieldService;
 import hello.advanced.threadlocal.code.ThreadLocalService;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
@@ -17,9 +18,6 @@ import org.springframework.util.ObjectUtils;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.springframework.util.StringUtils.hasText;
 
 public class LogAppender {
     protected ListAppender<ILoggingEvent> listAppender;
@@ -48,6 +46,9 @@ public class LogAppender {
         }
         if (className.contains("FieldLogTrace") || className.contains("V3")) {
             logger = loggerContext.getLogger(FieldLogTrace.class);
+        }
+        if (className.contains("ThreadLocalLogTrace")) {
+            logger = loggerContext.getLogger(ThreadLocalLogTrace.class);
         }
         if (className.contains("FieldService")) {
             logger = loggerContext.getLogger(FieldService.class);
