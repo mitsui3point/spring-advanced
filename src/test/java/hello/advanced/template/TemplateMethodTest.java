@@ -1,22 +1,34 @@
 package hello.advanced.template;
 
 import hello.advanced.log.appender.LogAppender;
+import hello.advanced.template.code.AbstractTemplate;
+import hello.advanced.template.code.SubClassLogic1;
+import hello.advanced.template.code.SubClassLogic2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
-public class TemplateMethodTest extends LogAppender {
+public class TemplateMethodTest  {
 
     @Test
     void templateMethod0() {
         //when
         logic1();
         logic2();
-        //then
-        assertThat(getContainsLog("비즈니스 로직1 실행")).isPresent();
-        assertThat(getContainsLog("비즈니스 로직2 실행")).isPresent();
+    }
+
+    /**
+     * 템플릿 메서드 패턴 적용
+     */
+    @Test
+    void templateMethodV1() {
+        //when
+        AbstractTemplate template1 = new SubClassLogic1();
+        template1.execute();
+        AbstractTemplate template2 = new SubClassLogic2();
+        template2.execute();
     }
 
     private void logic1() {

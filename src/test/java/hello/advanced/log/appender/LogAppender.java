@@ -7,6 +7,8 @@ import ch.qos.logback.core.read.ListAppender;
 import hello.advanced.logtrace.FieldLogTrace;
 import hello.advanced.logtrace.ThreadLocalLogTrace;
 import hello.advanced.template.TemplateMethodTest;
+import hello.advanced.template.code.SubClassLogic1;
+import hello.advanced.template.code.SubClassLogic2;
 import hello.advanced.threadlocal.code.FieldService;
 import hello.advanced.threadlocal.code.ThreadLocalService;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
@@ -56,9 +58,6 @@ public class LogAppender {
         }
         if (className.contains("ThreadLocalService")) {
             logger = loggerContext.getLogger(ThreadLocalService.class);
-        }
-        if (className.contains("TemplateMethodTest")) {
-            logger = loggerContext.getLogger(TemplateMethodTest.class);
         }
         if (logger == null) {
             throw new IllegalArgumentException("LogAppender 에서 지원되지 않는 클래스입니다.");
