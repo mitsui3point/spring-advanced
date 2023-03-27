@@ -44,10 +44,10 @@ public class LogAppender {
         if (className.contains("V2")) {
             logger = loggerContext.getLogger(HelloTraceV2.class);
         }
-        if (className.contains("FieldLogTrace") || className.contains("V3")) {
+        if (className.contains("FieldLogTrace")/* || className.contains("V3")*/) {
             logger = loggerContext.getLogger(FieldLogTrace.class);
         }
-        if (className.contains("ThreadLocalLogTrace")) {
+        if (className.contains("ThreadLocalLogTrace") || className.contains("V3")) {
             logger = loggerContext.getLogger(ThreadLocalLogTrace.class);
         }
         if (className.contains("FieldService")) {

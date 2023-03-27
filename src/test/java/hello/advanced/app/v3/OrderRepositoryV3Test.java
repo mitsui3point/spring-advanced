@@ -24,7 +24,7 @@ public class OrderRepositoryV3Test extends LogAppender {
     void saveTest() {
         assertTimeout(
                 Duration.ofMillis(1500), () -> {
-                    repository.save(new TraceId(), "itemId");
+                    repository.save("itemId");
                 });
     }
 
@@ -32,7 +32,7 @@ public class OrderRepositoryV3Test extends LogAppender {
     @DisplayName("주문정보 저장에 실패한다")
     void saveExceptionTest() {
         String itemId = "ex";
-        assertThatThrownBy(() -> repository.save(new TraceId(), itemId))
+        assertThatThrownBy(() -> repository.save(itemId))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -42,7 +42,7 @@ public class OrderRepositoryV3Test extends LogAppender {
         //given
         String expectedLog = "OrderRepository.save()";
         //when
-        repository.save(new TraceId(), "itemId");
+        repository.save("itemId");
         //then
         assertThat(getContainsLog(expectedLog)).isPresent();
     }
@@ -54,7 +54,7 @@ public class OrderRepositoryV3Test extends LogAppender {
         String expectedLog = "IllegalStateException";
         String itemId = "ex";
         //when
-        assertThatThrownBy(() -> repository.save(new TraceId(), itemId))
+        assertThatThrownBy(() -> repository.save(itemId))
                 .isInstanceOf(IllegalStateException.class);
         //then
         assertThat(getContainsLog(expectedLog)).isPresent();
