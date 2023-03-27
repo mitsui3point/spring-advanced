@@ -1,4 +1,4 @@
-package hello.advanced.template.code;
+package hello.advanced.exampleonly.template.code;
 
 import lombok.extern.slf4j.Slf4j;
 

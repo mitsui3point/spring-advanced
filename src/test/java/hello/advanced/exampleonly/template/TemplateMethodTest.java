@@ -1,13 +1,10 @@
-package hello.advanced.template;
+package hello.advanced.exampleonly.template;
 
-import hello.advanced.log.appender.LogAppender;
-import hello.advanced.template.code.AbstractTemplate;
-import hello.advanced.template.code.SubClassLogic1;
-import hello.advanced.template.code.SubClassLogic2;
+import hello.advanced.exampleonly.template.code.AbstractTemplate;
+import hello.advanced.exampleonly.template.code.SubClassLogic1;
+import hello.advanced.exampleonly.template.code.SubClassLogic2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 public class TemplateMethodTest  {
