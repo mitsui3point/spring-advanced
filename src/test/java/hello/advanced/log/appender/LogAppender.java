@@ -6,6 +6,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import hello.advanced.logtrace.FieldLogTrace;
 import hello.advanced.threadlocal.code.FieldService;
+import hello.advanced.threadlocal.code.ThreadLocalService;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
 import hello.advanced.trace.hellotrace.HelloTraceV2;
 import org.junit.jupiter.api.AfterEach;
@@ -50,6 +51,9 @@ public class LogAppender {
         }
         if (className.contains("FieldService")) {
             logger = loggerContext.getLogger(FieldService.class);
+        }
+        if (className.contains("ThreadLocalService")) {
+            logger = loggerContext.getLogger(ThreadLocalService.class);
         }
         if (logger == null) {
             throw new IllegalArgumentException("LogAppender 에서 지원되지 않는 클래스입니다.");
