@@ -1,22 +1,22 @@
-package hello.advanced.logtrace;
+package hello.advanced.trace.logtrace;
 
 import hello.advanced.trace.TraceId;
 import hello.advanced.trace.TraceStatus;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FieldLogTrace implements LogTrace {
+public class ThreadLocalLogTrace implements LogTrace {
     private static final String START_PREFIX = "-->";
     private static final String COMPLETE_PREFIX = "<--";
     private static final String EX_PREFIX = "<X-";
 
-    private TraceId traceIdHolder;//traceId 동기화, 동시성 이슈 발생
+    private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>();//traceId 동기화, 동시성 이슈 발생
 
     @Override
     public TraceStatus begin(String message) {
         syncTraceId();
 
-        TraceId traceId = traceIdHolder;
+        TraceId traceId = traceIdHolder.get();
         Long startTimeMs = System.currentTimeMillis();
 
         printBeginLog(message, traceId);
@@ -37,18 +37,18 @@ public class FieldLogTrace implements LogTrace {
     //private logic
 
     private void releaseTraceId() {
-        if (!traceIdHolder.isFirstLevel()) {
-            traceIdHolder = traceIdHolder.createPreviousId();
+        if (!traceIdHolder.get().isFirstLevel()) {
+            traceIdHolder.set(traceIdHolder.get().createPreviousId());
             return;
         }
-        traceIdHolder = null;//destroy
+        traceIdHolder.remove();//destroy
     }
     private void syncTraceId() {
-        if (traceIdHolder != null) {
-            traceIdHolder = traceIdHolder.createNextId();
+        if (traceIdHolder.get() != null) {
+            traceIdHolder.set(traceIdHolder.get().createNextId());
             return;
         }
-        traceIdHolder = new TraceId();
+        traceIdHolder.set(new TraceId());
     }
 
     private void complete(TraceStatus status, Exception e) {

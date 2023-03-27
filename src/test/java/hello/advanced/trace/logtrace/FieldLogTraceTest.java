@@ -1,17 +1,15 @@
-package hello.advanced.logtrace;
+package hello.advanced.trace.logtrace;
 
 import hello.advanced.log.appender.LogAppender;
-import hello.advanced.logtrace.LogTrace;
-import hello.advanced.logtrace.ThreadLocalLogTrace;
 import hello.advanced.trace.TraceStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ThreadLocalLogTraceTest extends LogAppender {
+public class FieldLogTraceTest extends LogAppender {
 
-    private LogTrace trace = new ThreadLocalLogTrace();
+    private LogTrace trace = new FieldLogTrace();
 
     @Test
     @DisplayName("깊이 2단계의 로직을 성공한 뒤 로그 출력 한다")
