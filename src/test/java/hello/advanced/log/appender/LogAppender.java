@@ -4,12 +4,13 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import hello.advanced.trace.logtrace.FieldLogTrace;
-import hello.advanced.trace.logtrace.ThreadLocalLogTrace;
 import hello.advanced.threadlocal.code.FieldService;
 import hello.advanced.threadlocal.code.ThreadLocalService;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
 import hello.advanced.trace.hellotrace.HelloTraceV2;
+import hello.advanced.trace.logtrace.FieldLogTrace;
+import hello.advanced.trace.logtrace.ThreadLocalLogTrace;
+import hello.advanced.trace.template.AbstractTemplateTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.LoggerFactory;
@@ -50,11 +51,17 @@ public class LogAppender {
         if (className.contains("ThreadLocalLogTrace") || className.contains("V3")) {
             logger = loggerContext.getLogger(ThreadLocalLogTrace.class);
         }
+        if (className.contains("V4")) {
+            logger = loggerContext.getLogger(ThreadLocalLogTrace.class);
+        }
         if (className.contains("FieldService")) {
             logger = loggerContext.getLogger(FieldService.class);
         }
         if (className.contains("ThreadLocalService")) {
             logger = loggerContext.getLogger(ThreadLocalService.class);
+        }
+        if (className.contains("AbstractTemplateTest")) {
+            logger = loggerContext.getLogger(AbstractTemplateTest.class);
         }
         if (logger == null) {
             throw new IllegalArgumentException("LogAppender 에서 지원되지 않는 클래스입니다.");
