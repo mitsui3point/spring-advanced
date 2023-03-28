@@ -10,6 +10,7 @@ import hello.advanced.trace.hellotrace.HelloTraceV1;
 import hello.advanced.trace.hellotrace.HelloTraceV2;
 import hello.advanced.trace.logtrace.FieldLogTrace;
 import hello.advanced.trace.logtrace.ThreadLocalLogTrace;
+import hello.advanced.trace.callback.TraceTemplateTest;
 import hello.advanced.trace.template.AbstractTemplateTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,10 +49,10 @@ public class LogAppender {
         if (className.contains("FieldLogTrace")/* || className.contains("V3")*/) {
             logger = loggerContext.getLogger(FieldLogTrace.class);
         }
-        if (className.contains("ThreadLocalLogTrace") || className.contains("V3")) {
-            logger = loggerContext.getLogger(ThreadLocalLogTrace.class);
-        }
-        if (className.contains("V4")) {
+        if (className.contains("ThreadLocalLogTrace") ||
+                className.contains("V3") ||
+                className.contains("V4") ||
+                className.contains("V5")) {
             logger = loggerContext.getLogger(ThreadLocalLogTrace.class);
         }
         if (className.contains("FieldService")) {
@@ -62,6 +63,9 @@ public class LogAppender {
         }
         if (className.contains("AbstractTemplateTest")) {
             logger = loggerContext.getLogger(AbstractTemplateTest.class);
+        }
+        if (className.contains("TraceTemplateTest")) {
+            logger = loggerContext.getLogger(TraceTemplateTest.class);
         }
         if (logger == null) {
             throw new IllegalArgumentException("LogAppender 에서 지원되지 않는 클래스입니다.");
