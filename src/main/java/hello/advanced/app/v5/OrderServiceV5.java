@@ -1,8 +1,7 @@
 package hello.advanced.app.v5;
 
-import hello.advanced.trace.logtrace.LogTrace;
 import hello.advanced.trace.callback.TraceTemplate;
-import lombok.RequiredArgsConstructor;
+import hello.advanced.trace.logtrace.LogTrace;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

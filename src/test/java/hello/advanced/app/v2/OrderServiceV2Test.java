@@ -1,6 +1,5 @@
 package hello.advanced.app.v2;
 
-import hello.advanced.app.v1.OrderServiceV1;
 import hello.advanced.log.appender.LogAppender;
 import hello.advanced.trace.TraceId;
 import org.junit.jupiter.api.DisplayName;

@@ -1,7 +1,6 @@
 package hello.advanced.app.v3;
 
 import hello.advanced.log.appender.LogAppender;
-import hello.advanced.trace.TraceId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

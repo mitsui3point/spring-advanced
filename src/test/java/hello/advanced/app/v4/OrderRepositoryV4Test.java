@@ -1,6 +1,5 @@
 package hello.advanced.app.v4;
 
-import hello.advanced.app.v3.OrderRepositoryV3;
 import hello.advanced.log.appender.LogAppender;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

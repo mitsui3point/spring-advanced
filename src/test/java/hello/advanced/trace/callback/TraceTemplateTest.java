@@ -1,7 +1,6 @@
 package hello.advanced.trace.callback;
 
 import hello.advanced.log.appender.LogAppender;
-import hello.advanced.trace.logtrace.FieldLogTrace;
 import hello.advanced.trace.logtrace.ThreadLocalLogTrace;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;

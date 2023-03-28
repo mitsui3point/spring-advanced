@@ -3,15 +3,13 @@ package hello.advanced.threadlocal;
 import hello.advanced.log.appender.LogAppender;
 import hello.advanced.threadlocal.code.FieldService;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @Slf4j
 public class FieldServiceTest extends LogAppender {
