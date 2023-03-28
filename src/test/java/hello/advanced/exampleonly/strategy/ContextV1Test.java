@@ -1,5 +1,9 @@
 package hello.advanced.exampleonly.strategy;
 
+import hello.advanced.exampleonly.strategy.code.strategy.ContextV1;
+import hello.advanced.exampleonly.strategy.code.strategy.Strategy;
+import hello.advanced.exampleonly.strategy.code.strategy.StrategyLogic1;
+import hello.advanced.exampleonly.strategy.code.strategy.StrategyLogic2;
 import hello.advanced.exampleonly.template.code.AbstractTemplate;
 import hello.advanced.exampleonly.template.code.SubClassLogic1;
 import hello.advanced.exampleonly.template.code.SubClassLogic2;
@@ -14,6 +18,17 @@ public class ContextV1Test {
         //when
         logic1();
         logic2();
+    }
+
+    @Test
+    void strategyV1() {
+        Strategy strategyLogic1 = new StrategyLogic1();
+        ContextV1 strategyV1 = new ContextV1(strategyLogic1);
+        strategyV1.execute();
+        
+        Strategy strategyLogic2 = new StrategyLogic2();
+        ContextV1 strategyV2 = new ContextV1(strategyLogic2);
+        strategyV2.execute();
     }
 
     private void logic1() {
